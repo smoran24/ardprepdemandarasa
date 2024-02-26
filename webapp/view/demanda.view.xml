@@ -1,0 +1,144 @@
+<mvc:View height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="AR_DP_REP_DEMANDA_RASA.AR_DP_REP_DEMANDA_RASA.controller.demanda"
+	displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}"
+					class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+					showNavButton="true">
+					<content>
+						<Panel>
+							<HBox>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="25%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Dealer:" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="cmbcliente" placeholder="Destinatario" width="100%" items="{path: 'cliente>/'}" loadItems="ConsultaOdata3"
+											change="Destinatario">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{cliente>SOLICITANTE}" text="{cliente>NOMBRE_SOLICITANTE}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="25%" justifyContent="Start" visible="true" displayInline="false">
+									<VBox>
+										<Text text="Fecha Pedido:" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<!--<ObjectIdentifier id="FechaPedido" title="{i18n>txtFechaPedido} "/>-->
+										<DateRangeSelection id="DP6" change="changeDateRange"/>
+										<!--<DatePicker id="DP6" change="changeDateRange" width="100%"/>-->
+									</VBox>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="25%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Tipo de Pedido" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="cmbPedido" placeholder="Tipo de Pedido" width="100%" items="{path: 'Tpedido>/'}" loadItems="ConsultaOdata3"
+											change="Tipo Pedido">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{Tpedido>AUART}" text="{Tpedido>BEZEI}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="15%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text=" " width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<!--<Link text="Adapt Filters" press="handleLinkPress"/>-->
+									</items>
+								</VBox>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="10%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text=" " width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Button text="Buscar" press="ConsultaPedidos"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+							</HBox>
+						</Panel>
+						<Panel>
+							<Table mode="None" items="{pedidos>/}" width="auto" id="tMaestra" growing="true" growingScrollToLoad="true" growingThreshold="100"
+								sticky="ColumnHeaders" busyIndicatorDelay="{pedidos>/SELECT}" selectionChange="press">
+								<headerToolbar>
+									<OverflowToolbar>
+										<ObjectIdentifier id="resumenTabla" title="Pedidos"/>
+										<ToolbarSpacer/>
+										<Button type="Transparent" text=" Enviar" icon="sap-icon://email" press="EnvioCorreo"/>
+										<Button type="Transparent" text=" Descargar" icon="sap-icon://excel-attachment" press="downloadExcel"/>
+										<!--<Button type="Transparent" icon="sap-icon://action-settings" press="actualizar"/>-->
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column hAlign="Left" width="auto">
+										<Text text="Tipo Pedido"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Solicitante"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Destinatario"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Usuario"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Material"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Descripción"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Cantidad"/>
+									</Column>
+									<Column hAlign="Left" width="auto">
+										<Text text="Fecha"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem >
+										<cells>
+											<Text text="{path: 'pedidos>TIPO_PEDIDO' }"/>
+											<Text text="{path: 'pedidos>NOM_SOLICITANTE' }"/>
+											<Text text="{path: 'pedidos>NOM_DESTINATARIO' }"/>
+											<Text text="{path: 'pedidos>ID_USUARIO_SCP' }"/>
+											<Text text="{path: 'pedidos>MATERIAL' }"/>
+												<Text text="{path: 'pedidos>DESMATERIAL' }"/>
+														<Text text="{path: 'pedidos>CANTPED' }"/>
+											<Text text="{pedidos>FECHA_VIEW}"/>
+										
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+					</content>
+					<!--<footer>-->
+					<!--	<Bar class="sapContrast sapContrastPlus">-->
+						
+					<!--		<contentRight>-->
+								<!--<Button id="btnAprueba" icon="sap-icon://create-form" text="Aprueba" type="Accept" press="onDialogPress" class="sapUiSmallMarginBottom"/>-->
+					<!--			<Button id="btnRechaza" text="Rechaza" type="Accept" icon="sap-icon://create-form" press="ConsultaMaterial" class="sapUiSmallMarginBottom"/>-->
+					<!--		</contentRight>-->
+					<!--	</Bar>-->
+					<!--</footer>-->
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="false">
+							<contentLeft>
+								<VBox width="15px"/>
+								<Text text="Consulta Operaciones de Crédito" class="tituloHead"/>
+								<!--Image height="28px" id="lNissan"/-->
+							</contentLeft>
+							<!--contentMiddle>
+							<Label text="Consulta Operaciones de Crédito" class="tituloHead"/>
+						</contentMiddle-->
+							<contentRight>
+								<Image height="20px" id="lCrediNissan"/>
+							</contentRight>
+						</Bar>
+					</customHeader>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

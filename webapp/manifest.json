@@ -1,0 +1,126 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "AR_DP_REP_DEMANDA_RASA.AR_DP_REP_DEMANDA_RASA",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/destinations/AR_DP_REP_DEST_HANA/ODATA_masterPedido.xsodata",
+                "type": "OData"
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "ardprepdemandarasa-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "ardprepdemandarasa",
+                    "action": "Display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "sap-icon://Fiori2/F0028"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "AR_DP_REP_DEMANDA_RASA.AR_DP_REP_DEMANDA_RASA.view.demanda",
+            "type": "XML",
+            "async": true,
+            "id": "demanda"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "AR_DP_REP_DEMANDA_RASA.AR_DP_REP_DEMANDA_RASA.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "AR_DP_REP_DEMANDA_RASA.AR_DP_REP_DEMANDA_RASA.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "Routedemanda",
+                    "pattern": "Routedemanda",
+                    "target": [
+                        "Targetdemanda"
+                    ]
+                }
+            ],
+            "targets": {
+                "Targetdemanda": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "demanda",
+                    "viewName": "demanda"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ardprepdemandarasa"
+    }
+}

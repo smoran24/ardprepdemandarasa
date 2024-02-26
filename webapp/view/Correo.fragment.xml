@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="EnvioCorreo" title="Solicitud de creación de material" draggable="true" >
+		<VBox class="sapUiResponsiveMargin" >
+			<!--<VBox alignItems="Start">-->
+			<!--	<Label text="Referencia" width="100%"/>-->
+			<!--	<Input editable="true" id="materialess" placeholder="1234679 " textAlign="Left" width="120%"/>-->
+			<!--</VBox>-->
+			<VBox alignItems="Start">
+				<Label text="Asunto Correo" width="100%"/>
+				<Input editable="true" id="descrpcion"  textAlign="Left" width="120%"/>
+			</VBox>
+			<VBox alignItems="Start">
+				<Label text="Email de Destino" width="100%"/>
+				<Input editable="true" id="mail" placeholder="correo@nissan.com.ar " textAlign="Left" width="120%"/>
+			</VBox>
+		</VBox>
+		<buttons>
+			<Button text="Enviar correo" press="estructura" icon="sap-icon://paper-plane"/>
+			<Button text="Cancelar" press="cerrarEnvioCorreo"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,1 @@
+sap.ui.define(["AR_DP_REP_DEMANDA_RASA/AR_DP_REP_DEMANDA_RASA/controller/demanda.controller"],function(n){"use strict";QUnit.module("demanda Controller");QUnit.test("I should test the demanda controller",function(t){var e=new n;e.onInit();t.ok(e)})});
